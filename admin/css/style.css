@@ -1,0 +1,173 @@
+@font-face {
+    font-family: Ubuntu;
+    src: url(Ubuntu-R.ttf);
+}
+
+a,body,p,input,li,ul,td,tr,th,table,html{
+	font-family: Ubuntu;
+}
+
+body,html{
+	height: 100%;
+	margin: 0px;
+}
+
+table{
+	border-collapse: collapse;
+}
+
+table, th, td {
+	border: 1px solid black;
+}
+
+.wrapper{
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	margin: 0;
+}
+
+::-webkit-scrollbar {
+    width: 13px;
+    height: 13px;
+}
+
+#header{
+
+	height: 25%;
+	background-color: #757575
+
+}
+
+.content{
+
+	height: 75%; width:100%;
+	background-color: #fff;
+	padding: 10px; overflow:scroll;
+
+}
+
+
+/**************
+	HEADER
+**************/
+
+ul{
+	list-style-type: none;
+	margin: 0px;
+	padding: 0;
+}
+
+ul li {
+    display: block;
+    position: relative;
+    float: left;
+}
+
+ul li a {
+    display: block;
+    text-decoration: none;
+   	font-size: 22px;
+    letter-spacing: 2px;
+    color: #ffffff;
+    padding: 5px 15px 5px 15px;
+    white-space: nowrap;
+    height: 30px;
+}
+
+ul li a:hover {
+    background: #111;
+}
+
+#menu {
+    float: right;
+    margin-top: 120px;
+    margin-right: 23%;
+    height: 40px; z-index:20;
+}
+
+
+/*****************
+	Dialog Box
+******************/
+
+	.dialog-box {
+	    display: none;
+	    position: fixed;
+	    z-index: 1; 
+	    padding-top: 100px;
+	    left: 0;
+	    top: 0;
+	    width: 100%;
+	    height: 100%;
+	    overflow: auto;
+	    background-color: #fff
+	    background-color: #fff
+	}
+
+	.box-content {
+	    position: relative;
+	    background-color: #fefefe;
+	    margin: auto;
+	    padding: 0;
+	    border: 1px solid #888;
+	    width: 80%;
+	    animation-duration: 0.4s
+	}
+
+
+	.close {
+	    color: white;
+	    float: right;
+	    font-size: 28px;
+	    font-weight: bold;
+	}
+
+	.close:hover,
+	.close:focus {
+	    color: #000;
+	    text-decoration: none;
+	    cursor: pointer;
+	}
+
+	.box-header {
+	    padding: 2px 16px;
+	    background-color: #00FF00;
+	    color: white;
+	}
+
+	.box-body {
+		padding: 2px 16px;
+	}
+
+	.floated_block
+{
+    float: left; font-family: "Comic Sans MS", cursive, sans-serif;
+    width:15%; height:25%; background:#d7a8c3; margin-left:10%; margin-top:5%;
+    border-radius:10px; border:5px solid #f4f4f4; box-shadow: 6px 6px 11px #E1E1E1;
+}
+	.floated_block_item
+{
+    float: left; font-family: "Comic Sans MS", cursive, sans-serif;
+    width:20%; height:25%; background:#d7a8c3; margin-left:10%; margin-top:3%;
+    border-radius:10px; border:5px solid #f4f4f4; box-shadow: 6px 6px 11px #E1E1E1;
+}
+
+p,a{ }
+p.submit{
+	
+	font-size:15px; padding:5px; cursor:pointer; display:block; background:#f4f4f4;
+	border:1px solid gray; border-radius: 7px;
+}
+p.submit:hover{
+	font-weight:bold; 
+}
+
+input[type=text],input[type=number]{
+	
+	font-size:15px; padding:5px 10px; box-shadow: 6px 6px 11px #E1E1E1;
+}
+input[type=text]:hover,input[type=number]:hover{
+	font-weight:bold;
+}
+

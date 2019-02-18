@@ -1,0 +1,99 @@
+body,p,a,input{
+font-family: Ubuntu; 
+}
+
+#test2{ background-color: white; height: 40px; width:device-width; padding:20px; }
+
+#test3{ height: device-height; width: device-width; }
+
+a.test {   background-color:white; font-weight:normal; color:#ee6e73; font-size:120%; text-decoration:none; border: 0px solid #D3D3D3; 
+          margin:0px 5px; padding:5px; font-family: Ubuntu; outline:#ee6e73;}
+
+a.test:hover{ background-color:white; color:#ee6e93; border: 0px solid #ee6e73; border-bottom: 1px solid #ee6e73;}
+a.test:active{ background-color:#ee6e73; color:white; border-bottom: 0px solid #ee6e73; }
+
+a.test2 {   background-color:#F4F4F4; font-weight:normal; color:#ee6e73; font-size:20px; text-decoration:none; border-bottom: 1px solid #ee6e73; 
+          margin:0px 5px; padding:5px; font-family: Ubuntu; outline:none;}
+
+a.test2:hover{ background-color:white; color:#ee6e73; border: 0px solid #ee6e73; border-bottom: 0px solid #ee6e73;}
+a.test2:active{ background-color:#ee6e73; color:white; border: 0px solid #ee6e73; }
+
+a.active{background-color:#ee6e73; font-weight:normal; color:white; font-size:20px; text-decoration:none; border: 1px solid #ee6e73; font-family: Ubuntu; 
+          margin:0px 5px; padding:5px;}
+
+img.one {
+    padding: 0px;
+    display: block;
+    margin: 0px;
+    max-height: 100%;
+    max-width: 100%;
+    min-height: 100%;
+    min-width: 100%;
+	-webkit-filter: blur(0px);
+}
+
+img.two {
+    padding: 0px;
+    display: block;
+    margin: 0px;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+input.a[type=text]{ color:#333333; height:50px; width:90%; margin:25px 40px; border: 1px solid #ee6e73; font-family: Ubuntu; 
+  font-size:23px; padding:20px; background:#F4F4F4; outline:none; box-shadow: 0 0 5px #ee6e73;}
+input.a[type=text]:focus{border: 1px solid #ee6e73;   box-shadow: 0 0 5px #ee6e73;}
+
+input.submit1 {
+    padding:10px 10px; 
+    background:#F24848;
+    color:white;	
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 0px; 
+	width:120px; height:35px; font-weight:bold; cursor:pointer; font-family: Ubuntu; text-align:center;
+}
+input.submit1:hover{background:#333333 ;}
+
+input.contact{ color:#333333; height:40px; width:40%; border: 2px solid gray; font-family: Ubuntu; 
+  font-size:18px; margin:18px 0px; background:#F4F4F4; padding:10px; margin-top:0px; box-shadow: 0 0 5px #F4F4F4;}
+input.contact:focus {border: 0px solid #ee6e73; border-bottom:1px solid #ee6e73; background:white; outline:none;}
+
+.textarea{background:#F4F4F4; padding:10px; margin:18px 0px; border: 2px solid gray; font-family: Ubuntu; outline:none; box-shadow: 0 0 5px #F4F4F4;}
+.textarea:focus{background:white; border: 1px solid #ee6e73;}
+
+input.login{ color:#333333; height:35px; width:60%; border:2px solid #F4F4F4; font-family: Ubuntu; border-bottom:1px solid #ee6e73;
+  font-size:18px; margin:18px 0px; margin-top:0px; background:white; padding:10px; margin-left:15px; outline:none;}
+input.login:focus {border: 0px solid #ee6e73; border-bottom:1px solid #ee6e73; background:white; outline:none;}
+
+	.dialog-box {
+	    display: block;
+	    position: fixed;
+	    z-index: 2; 
+	    padding-top: 100px;
+	    left: 0;
+	    top: 0;
+	    width: 100%;
+	    height: 100%;
+	    overflow: auto;
+	    background-color: #E576D5; color:black;
+	}
+ 
+ .take2{ position:relative; top:10%; left:40%; font-size: 18px; font-family: Ubuntu; }
+ a.edit{ position: relative; top:20px; font-size:18px; font-family: Ubuntu; text-decoration:underline; color:gray;}
+ a.edit:hover{ color:green; text-decoration:none; }
+
+  .close {
+      color: white;
+      float: right;
+      font-size: 28px;
+      font-weight: bold; margin-right: 20px;
+  }
+
+  .close:hover,
+  .close:focus {
+      color: white;
+      text-decoration: underline;
+      cursor: pointer;
+  }

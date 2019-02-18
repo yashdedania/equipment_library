@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Equipment Library</title>
+	<link rel="stylesheet" type="text/css" href="../css/stylesheet1.css" />
+	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu" />
+</head>
+<script type = "text/javascript" src = "http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery-3.1.0.js"></script>
+<body>
+
+<div id="whole">
+<div id="header">
+		<p class="logo">Equipment Library</p>
+
+<!--<div class="dropdown">
+  <button class="dropbtn" id="uname"></button>
+  <div class="dropdown-content">
+  	<a href="profile.php">Profile</a>
+  </div>
+</div>-->
+	<a class="menu_head" href="#" onclick="showcart()">Cart</a>
+	<a class="menu_head" href="#" onclick="notifications()">Updates</a>
+	<a class="menu_head" href="../php/logout.php">Logout</a>
+	<a class="menu_head" href="#">Home</a>
+</div>
+
+	<div id="menu" style="overflow:scroll;"></div>
+
+	<div id="content1" style="overflow:scroll;"></div>
+
+	<div id="dialog" style="overflow:scroll;"></div>
+
+	<div id="askqty">
+		<span class="close" style="font-weight: bold; float:right; font-size:25px; cursor:pointer;" onclick="askqtybox.style.display='none'">&times;</span>
+		<p onclick="addtocart()" style="float: right; margin-right:10%; font-weight: bold; cursor:pointer;"><u>Add To Cart</u></p>
+		<p style="margin-left:10%;">Enter the Amount : <input type="number" min=0 style="" id="item_qty"></p>
+	</div>
+
+	<div id="place_order" style="display:none;">
+		<p style="text-align:center;">Enter Details</p>
+		<input type="number" id="po_pid" placeholder="PID" style="position:absolute; left:10%; top:20%; width:30%; height:10%;">
+		<input type="text" id="po_name" placeholder="Name" style="position:absolute; left:60%; top:20%; width:30%; height:10%;">
+		<input type="text" id="po_class" placeholder="Class" style="position:absolute; left:10%; top:40%; width:30%; height:10%;">
+		<input type="number" id="po_contact" placeholder="Contact" style="position:absolute; left:60%; top:40%; width:30%; height:10%;">
+		<input type="email" id="po_email" placeholder="E-mail" style="position:absolute; left:10%; top:60%; width:30%; height:10%;">
+		<textarea placeholder="Describe the reason in brief" id="po_desp" style="position:absolute; left:60%; top:60%; width:30%; height:20%;"></textarea>
+
+		<select type="text" class="" placeholder="Select the professor" id="prof_list" style="position:absolute; left:10%; top:80%; width:30%; height:10%;">
+		</select>
+
+		<input type="button" value="Place Order" onclick="placeorder()" style="position:absolute; left:45%; top:90%; width:10%; height:10%; cursor:pointer;">
+	</div>
+
+	<div id="dialog_notify" style="display:none;">
+		
+	</div>
+
+</div>
+</body>
+</html>
+
+<script type="text/javascript">
+
+	var askqtybox = document.getElementById("askqty");
+	var diagnotify = document.getElementById("dialog_notify");
+	var dialogbox = document.getElementById("dialog");
+	var span = document.getElementsByClassName("close")[0];
+	var itemid;
+
+	span.onclick = function() {
+    	askqtybox.style.display = "none"; diagnotify.style.display = "none";
+	}
+
+	
+	$.post("../php/get_inventory.php", { c: 1 },
+	function(data) {
+		$('#menu').html(data);
+	});
+
+	$.post("../php/get_inventory.php", { c: 2, item_gen_name: 'all' },
+	function(data) {
+		$('#content1').html(data);
+	});		
+
+	function itemdet(item_gen_name){
+		$.post("../php/get_inventory.php", { c: 2, item_gen_name: item_gen_name },
+		function(data) {
+			$('#content1').html(data);
+		});	
+	}
+
+	function showcart(){
+		$.post("../php/get_cart.php", { c: 1 },
+		function(data) {
+			if(!data){
+				document.getElementById("dialog").style.display = "block";
+				diagnotify.style.display = "none";
+				$('#dialog').html("<p style='text-align:center;'>0 Items in your Inventory</p>");
+
+				document.getElementsByClassName("menu_head")[0].onclick = function(){
+					document.getElementById("dialog").style.display = "none";
+					document.getElementsByClassName("menu_head")[0].innerHTML = "Cart";
+					document.getElementsByClassName("menu_head")[0].onclick = function(){
+						showcart()
+					}
+				}
+				document.getElementsByClassName("menu_head")[0].innerHTML = "Close";
+			}
+			else{
+				document.getElementById("dialog").style.display = "block";
+				$('#dialog').html("<p style='text-align:center;'>Items In Your Cart</p>"+data);
+
+				document.getElementsByClassName("menu_head")[0].onclick = function(){
+					document.getElementById("dialog").style.display = "none";
+					document.getElementsByClassName("menu_head")[0].innerHTML = "Cart";
+					document.getElementsByClassName("menu_head")[0].onclick = function(){
+						showcart()
+					}
+				}
+				document.getElementsByClassName("menu_head")[0].innerHTML = "Close";
+
+				var para = document.createElement("p");
+				var node = document.createTextNode("Proceed");
+				para.appendChild(node);
+				para.onclick = function(){
+					proceed();
+				}
+				para.className = "placeorder";
+				var diag = document.getElementById("dialog").appendChild(para);
+			}
+		});			
+	}
+
+	function askqty(item_id){
+		document.getElementById("askqty").style.display = "block";
+		itemid = item_id;
+	}
+
+	function addtocart(){
+		var itemqty = document.getElementById("item_qty").value;
+		if(itemqty != 0){
+			$.post("../php/get_cart.php", { c:2, fitemid: itemid, fitemqty: itemqty },
+			function(data) {
+				if(!data){
+					alert("ERROR Adding To Cart"); 
+					askqtybox.style.display = "none"; document.getElementById("item_qty").value = 0;
+				}else{
+					alert("Added to Cart Successfully");
+					askqtybox.style.display = "none"; document.getElementById("item_qty").value = 0;
+				}
+			});	
+		}
+	}
+
+	function placeorder(){
+
+		var po_pid = document.getElementById("po_pid").value; var po_name = document.getElementById("po_name").value;
+		var po_class = document.getElementById("po_class").value; var po_contact = document.getElementById("po_contact").value;
+		var po_email = document.getElementById("po_email").value; var po_desp = document.getElementById("po_desp").value;
+
+		var prof_email = prof_list[prof_list.selectedIndex].value;
+
+		if(po_pid != "" && po_name != "" && po_class != "" && po_contact != "" && po_email != "" && po_desp != "" && prof_email != ""){
+			
+			$.post("../php/place_order.php", { po_pid: po_pid, po_name: po_name, po_class: po_class, po_contact: po_contact, po_email: po_email, po_desp: po_desp, prof_email: prof_email },
+			function(data) {
+				if(!data){
+					alert("ERROR PLACING YOUR ORDER"); dialogbox.style.display = "none";
+				}else{
+					alert("Order Placed Successfully. You Will Be Notified on given email id If Approved.");
+					dialogbox.style.display = "none";
+				}
+			});	
+
+		}else{
+			alert("Please enter all details");
+		}
+
+	}
+
+	function remove_cart(item_id){
+		$.post("../php/get_cart.php", { c: 3, item_id: item_id },
+		function(data) {
+			if(!data){
+				alert("ERROR Deting item");
+			}else{
+				document.getElementById(item_id).remove(); alert(data);
+			}
+		});			
+	}
+
+	function proceed(){
+		var po = document.getElementById("place_order");
+		document.getElementById("place_order").style.display = "block";
+
+		$('#dialog').html(po);
+
+		$.post("../php/get_prof.php", {},
+		function(data) {
+			document.getElementById("prof_list").innerHTML = data;
+		});	
+	}
+
+	function notifications(){
+		diagnotify.style.display = "block";
+		$.post("../php/get_cart.php", { c: 4 },
+		function(data) {
+			$('#dialog_notify').html(data);
+		});
+	}
+
+</script>
